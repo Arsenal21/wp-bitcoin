@@ -31,7 +31,7 @@ function wpbc_bitpay_handle_post_payment()
                 );
             wp_update_post($updated_wpbc_order);
         }
-        $trn_status = $response['status'];
+        $trn_status = sanitize_text_field($response['status']);
         $to_address = get_post_meta( $post_id, 'wpbc_email_address', true );
         $subject = "";
         $body = "";

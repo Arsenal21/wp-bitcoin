@@ -1,4 +1,5 @@
 <?php
+
 class WP_Bitcoin_Settings_Page 
 {
 	function __construct() {
@@ -25,9 +26,9 @@ class WP_Bitcoin_Settings_Page
                 echo '<div class="wrap">'.screen_icon( ).'<h2>WordPress Bitcoin v'.WP_BITCOIN_ADDON_VERSION.'</h2>';
                 $current = "";
                 if(isset($_GET['page'])){
-                    $current = $_GET['page'];
+                    $current = sanitize_text_field($_GET['page']);
                     if(isset($_GET['action'])){
-                        $current .= "&action=".$_GET['action'];
+                        $current .= "&action=".sanitize_text_field($_GET['action']);
                     }
                 }
                 $content = '';

@@ -131,27 +131,27 @@ EOT;
     <h2><?php echo $text['BILLING_INFORMATION'];?></h2>
     <div class="pane">
         <label><?php echo $text['BILLING_FIRST_NAME'];?></label>
-        <input name="fname" id="fname" type="text" class="long-field required"  value="<?php echo $_REQUEST["fname"];?>" />
+        <input name="fname" id="fname" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["fname"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['BILLING_LAST_NAME'];?></label>
-        <input name="lname" id="lname" type="text" class="long-field required"  value="<?php echo $_REQUEST["lname"];?>" />
+        <input name="lname" id="lname" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["lname"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['BILLING_ADDRESS'];?></label>
-        <input name="address" id="address" type="text" class="long-field required"  value="<?php echo $_REQUEST["address"];?>" />
+        <input name="address" id="address" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["address"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['BILLING_CITY'];?></label>
-        <input name="city" id="city" type="text" class="long-field required"  value="<?php echo $_REQUEST["city"];?>" />
+        <input name="city" id="city" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["city"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['BILLING_STATE_PROVINCE'];?></label>
-        <input name="state" id="state" type="text" class="long-field required"  value="<?php echo $_REQUEST["state"];?>" />
+        <input name="state" id="state" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["state"]); ?>" />
 
         <div class="wp_bitcoin_clr"></div>
         <label><?php echo $text['BILLING_ZIP_POSTAL_CODE'];?></label>
-        <input name="zip" id="zip" type="text" class="small-field required"  value="<?php echo $_REQUEST["zip"];?>" />
+        <input name="zip" id="zip" type="text" class="small-field required"  value="<?php echo esc_attr($_REQUEST["zip"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['BILLING_COUNTRY'];?></label>
@@ -164,11 +164,11 @@ EOT;
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['BILLING_EMAIL'];?></label>
-        <input name="email" id="email" type="text" class="long-field required"  value="<?php echo $_REQUEST["email"];?>" />
+        <input name="email" id="email" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["email"]) ;?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['BILLING_PHONE'];?></label>
-        <input name="phone" id="phone" type="text" class="long-field"  value="<?php echo $_REQUEST["phone"];?>" />
+        <input name="phone" id="phone" type="text" class="long-field"  value="<?php echo esc_attr($_REQUEST["phone"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <input type="hidden" name="estore_bitpay_billing_details_submitted" value="" />
@@ -187,44 +187,44 @@ EOT;
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_FIRST_NAME'];?></label>
-        <input name="shipping_fname" id="shipping_fname" type="text" class="long-field required"  value="<?php echo $_REQUEST["shipping_fname"];?>" />
+        <input name="shipping_fname" id="shipping_fname" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["shipping_fname"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_LAST_NAME'];?></label>
-        <input name="shipping_lname" id="shipping_lname" type="text" class="long-field required"  value="<?php echo $_REQUEST["shipping_lname"];?>" />
+        <input name="shipping_lname" id="shipping_lname" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["shipping_lname"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_ADDRESS'];?></label>
-        <input name="shipping_address" id="shipping_address" type="text" class="long-field required"  value="<?php echo $_REQUEST["shipping_address"];?>" />
+        <input name="shipping_address" id="shipping_address" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["shipping_address"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_CITY'];?></label>
-        <input name="shipping_city" id="shipping_city" type="text" class="long-field required"  value="<?php echo $_REQUEST["shipping_city"];?>" />
+        <input name="shipping_city" id="shipping_city" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["shipping_city"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_STATE_PROVINCE'];?></label>
-        <input name="shipping_state" id="shipping_state" type="text" class="long-field required"  value="<?php echo $_REQUEST["shipping_state"];?>" />
+        <input name="shipping_state" id="shipping_state" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["shipping_state"]); ?>" />
 
         <div class="wp_bitcoin_clr"></div>
         <label><?php echo $text['SHIPPING_ZIP_POSTAL_CODE'];?></label>
-        <input name="shipping_zip" id="shipping_zip" type="text" class="small-field required"  value="<?php echo $_REQUEST["shipping_zip"];?>" />
+        <input name="shipping_zip" id="shipping_zip" type="text" class="small-field required"  value="<?php echo esc_attr($_REQUEST["shipping_zip"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_COUNTRY'];?></label>
         <select name="shipping_country" id="shipping_country" class="long-field required" >
             <option value=""><?php echo $text['SELECT_SHIPPING_COUNTRY'];?></option>
             <?php foreach($countries as $code => $name){ ?>
-            <option value="<?php echo $code;?>" <?php echo $_REQUEST["shipping_country"]=="$code"?"selected":""?>><?php echo $name;?></option>
+            <option value="<?php echo $code;?>" <?php echo ($_REQUEST["shipping_country"]=="$code") ? "selected" : ""?>><?php echo $name; ?></option>
             <?php } ?>
         </select>
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_EMAIL'];?></label>
-        <input name="shipping_email" id="shipping_email" type="text" class="long-field required"  value="<?php echo $_REQUEST["shipping_email"];?>" />
+        <input name="shipping_email" id="shipping_email" type="text" class="long-field required"  value="<?php echo esc_attr($_REQUEST["shipping_email"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <label><?php echo $text['SHIPPING_PHONE'];?></label>
-        <input name="shipping_phone" id="shipping_phone" type="text" class="long-field"  value="<?php echo $_REQUEST["shipping_phone"];?>" />
+        <input name="shipping_phone" id="shipping_phone" type="text" class="long-field"  value="<?php echo esc_attr($_REQUEST["shipping_phone"]); ?>" />
         <div class="wp_bitcoin_clr"></div>
 
         <input type="hidden" name="estore_bitpay_shipping_details_submitted" value="" />
@@ -237,17 +237,17 @@ EOT;
     {
     $year = date("y");
     ?>
-    <h2><?php echo $text['CREDIT_CARD_INFORMATION'];?></h2>
+    <h2><?php echo esc_attr($text['CREDIT_CARD_INFORMATION']); ?></h2>
     <div class="pane">
-    <label><?php echo $text['CREDIT_CARD_NUMBER'];?></label>
+    <label><?php echo esc_attr($text['CREDIT_CARD_NUMBER']); ?></label>
     <input name="cardnumber" id="ccn" type="text" class="long-field required" value="" maxlength="16" />
     <div class="wp_bitcoin_clr"></div>
 
-    <label><?php echo $text['NAME_ON_CREDIT_CARD'];?></label>
+    <label><?php echo esc_attr($text['NAME_ON_CREDIT_CARD']); ?></label>
     <input name="cardname" id="ccname" type="text" class="long-field required"   />
     <div class="wp_bitcoin_clr"></div>
     
-    <label><?php echo $text['CREDIT_CARD_EXPIRATION_DATE'];?></label>
+    <label><?php echo esc_attr($text['CREDIT_CARD_EXPIRATION_DATE']); ?></label>
     <select name="cardexpirymonth" id="exp1" class="small-field required" >
         <option value="01">01</option>
         <option value="02">02</option>
@@ -277,9 +277,9 @@ EOT;
     </select>
     <div class="wp_bitcoin_clr"></div>
     
-    <label><?php echo $text['CREDIT_CARD_CVV'];?></label>
+    <label><?php echo esc_attr($text['CREDIT_CARD_CVV']); ?></label>
     <input name="cardcvv" id="cvv" type="text" maxlength="5" class="small-field required" />
-    <span class="tooltip_green" data-text="<?php echo $text['CREDIT_CARD_CVV_HELP_TEXT']; ?>"></span>
+    <span class="tooltip_green" data-text="<?php echo esc_attr($text['CREDIT_CARD_CVV_HELP_TEXT']); ?>"></span>
     <input type="hidden" name="estore_bitpay_credit_card_details_submitted" value="" />
     
     </div>

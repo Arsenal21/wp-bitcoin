@@ -1,13 +1,13 @@
 === WordPress Bitcoin ===
 Contributors: Tips and Tricks HQ
-Donate link: http://www.tipsandtricks-hq.com/development-center
-Tags: bitcoin, payment, bitpay, shortcode, payment gateway, cart, checkout, e-commerce, online store, sell, accept bitcoin, bitcoin store
+Donate link: https://www.tipsandtricks-hq.com/development-center
+Tags: bitcoin, payment, bitpay, accept bitcoin, payment gateway, e-commerce, bitcoin store
 Requires at least: 3.0
-Tested up to: 4.5
-Stable tag: 1.1.2
+Tested up to: 4.9
+Stable tag: 1.1.3
 License: GPLv2 or later
 
-Easily accept Bitcoin payments into your wallet via bitpay payment gateway. Quick on-site checkout functionality.
+Easily accept Bitcoin payments into your wallet via Bitpay payment gateway. Quick on-site bitcoin checkout functionality.
 
 == Description ==
 
@@ -73,6 +73,10 @@ None
 None
 
 == Changelog ==
+
+= 1.1.3 =
+* User data sanitization and escaping.
+* Added settings link in the plugins listing interface.
 
 = 1.1.2 =
 * Added some enhanced security in the form submission

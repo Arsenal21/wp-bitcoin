@@ -82,7 +82,7 @@ function bitpay_estore_filter_store_action_page($content)
                 $state = isset($_POST["state"])? sanitize_text_field($_POST["state"]):'';
                 $zip = isset($_POST["zip"])? sanitize_text_field($_POST["zip"]):'';
                 $country = isset($_POST["country"])? sanitize_text_field($_POST["country"]):'';
-                $email = isset($_POST["email"])? sanitize_text_field($_POST["email"]):'';
+                $email = isset($_POST["email"])? sanitize_email($_POST["email"]):'';
                 $phone = isset($_POST["phone"])? sanitize_text_field($_POST["phone"]):'';
                 
                 //------------------------
@@ -314,37 +314,38 @@ function wpbc_bitcoin_save_orders( $post_id, $wpbc_bitcoin_orders ) {
     if ( $wpbc_bitcoin_orders->post_type == 'wpbc_bitcoin_orders' ) {
         // Store data in post meta table if present in post data
         if ( isset( $_POST['wpbc_first_name'] ) && $_POST['wpbc_first_name'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_first_name', $_POST['wpbc_first_name'] );
+            update_post_meta( $post_id, 'wpbc_first_name', sanitize_text_field($_POST['wpbc_first_name']));
         }
         if ( isset( $_POST['wpbc_last_name'] ) && $_POST['wpbc_last_name'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_last_name', $_POST['wpbc_last_name'] );
+            update_post_meta( $post_id, 'wpbc_last_name', sanitize_text_field($_POST['wpbc_last_name']));
         }
         if ( isset( $_POST['wpbc_email_address'] ) && $_POST['wpbc_email_address'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_email_address', $_POST['wpbc_email_address'] );
+            update_post_meta( $post_id, 'wpbc_email_address', sanitize_email($_POST['wpbc_email_address']) );
         }
         if ( isset( $_POST['wpbc_total_amount'] ) && $_POST['wpbc_total_amount'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_total_amount', $_POST['wpbc_total_amount'] );
+            update_post_meta( $post_id, 'wpbc_total_amount', sanitize_text_field($_POST['wpbc_total_amount']) );
         }
         if ( isset( $_POST['wpbc_address'] ) && $_POST['wpbc_address'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_address', $_POST['wpbc_address'] );
+            update_post_meta( $post_id, 'wpbc_address', sanitize_text_field($_POST['wpbc_address']) );
         }
         if ( isset( $_POST['wpbc_city'] ) && $_POST['wpbc_city'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_city', $_POST['wpbc_city'] );
+            update_post_meta( $post_id, 'wpbc_city', sanitize_text_field($_POST['wpbc_city']) );
         }
         if ( isset( $_POST['wpbc_state'] ) && $_POST['wpbc_state'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_state', $_POST['wpbc_state'] );
+            update_post_meta( $post_id, 'wpbc_state', sanitize_text_field($_POST['wpbc_state']) );
         }
         if ( isset( $_POST['wpbc_zip'] ) && $_POST['wpbc_zip'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_zip', $_POST['wpbc_zip'] );
+            update_post_meta( $post_id, 'wpbc_zip', sanitize_text_field($_POST['wpbc_zip']) );
         }
         if ( isset( $_POST['wpbc_country'] ) && $_POST['wpbc_country'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_country', $_POST['wpbc_country'] );
+            update_post_meta( $post_id, 'wpbc_country', sanitize_text_field($_POST['wpbc_country']) );
         }
         if ( isset( $_POST['wpbc_phone'] ) && $_POST['wpbc_phone'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_phone', $_POST['wpbc_phone'] );
+            update_post_meta( $post_id, 'wpbc_phone', sanitize_text_field($_POST['wpbc_phone']) );
         }
         if ( isset( $_POST['wpbc_items_ordered'] ) && $_POST['wpbc_items_ordered'] != '' ) {
-            update_post_meta( $post_id, 'wpbc_items_ordered', $_POST['wpbc_items_ordered'] );
+	    $items_ordered = stripslashes(esc_textarea($_POST['wpbc_items_ordered']));
+            update_post_meta( $post_id, 'wpbc_items_ordered', $items_ordered );
         }
     }
 }

@@ -1,20 +1,26 @@
 <?php
 /**
  * Plugin Name: WP Bitcoin
- * Plugin URI: http://www.tipsandtricks-hq.com/wordpress-bitcoin-payment-plugin
+ * Plugin URI: https://www.tipsandtricks-hq.com/wordpress-bitcoin-payment-plugin
  * Description: Accept bitcoin payments via bitpay from your WordPress site
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: Tips and Tricks HQ
- * Author URI: http://www.tipsandtricks-hq.com/
- * Requires at least: 3.0
+ * Author URI: https://www.tipsandtricks-hq.com/
+ * License: GPLv2 or later
+ * Text Domain: wp-bitcoin
+ * Domain Path: /languages/
 */
 
-if (!defined('ABSPATH')) exit;
+//Slug - wp_btc
+
+if (!defined('ABSPATH')){
+    exit;
+}
 
 if (!class_exists('WP_Bitcoin')){
 
     class WP_Bitcoin{
-        var $version = '1.1.2';
+        var $version = '1.1.3';
         var $db_version = '1.0';
         var $plugin_url;
         var $plugin_path;
@@ -222,3 +228,14 @@ if (!class_exists('WP_Bitcoin')){
 }//End of class not exists check
 
 $GLOBALS['wp_bitcoin'] = new WP_Bitcoin();
+
+
+/* Add a link to the settings page in the plugins listing page */
+function wp_btc_add_settings_link( $links, $file ) {
+    if ( $file == plugin_basename( __FILE__ ) ) {
+	$settings_link = '<a href="options-general.php?page=wp-bitcoin-settings">Settings</a>';
+	array_unshift( $links, $settings_link );
+    }
+    return $links;
+}
+add_filter( 'plugin_action_links', 'wp_btc_add_settings_link', 10, 2 );
