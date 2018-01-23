@@ -13,7 +13,7 @@ Easily accept Bitcoin payments into your wallet via Bitpay payment gateway. Quic
 
 This plugin enables bitpay payment gateway functionality on your WordPress site to accept bitcoin payments for your products or services.
 
-= Features = 
+= Features =
 
 * Accept payments in bitcoins from any country in 150+ currencies
 * Automatically convert your store currency to bitcoin via flexible exchange rate and with no hidden fees
@@ -30,7 +30,7 @@ Once you have installed the plugin you need to provide your bitcoin merchant det
 * Transaction Speed (Speed at which the bitcoin transaction registers as "confirmed" to the store)
 * Order Information Page (URL of the page where order information will be collected from your users)
 * Order Information Page Title (Title of the page where order information will be collected from your users)
- 
+
 Now create a new post/page and insert Bitcoin shortcode for your product. For example:
 
 `[wpbc_buy_now item_name="Test Product" price="5.00" currency="USD"]`
@@ -84,5 +84,5 @@ None
 = 1.1 =
 * WordPress 3.9 compatibility
 
-= 1.0 = 
+= 1.0 =
 * First commit
