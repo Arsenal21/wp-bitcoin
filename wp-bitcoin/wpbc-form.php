@@ -87,9 +87,9 @@ EOT;
 			if ( ! empty( $_SESSION[ 'estore_bitpay_form_submission_error' ] ) ) {
 			    echo '<div class="estore_bitpay_form_submission_error">' . $_SESSION[ 'estore_bitpay_form_submission_error' ] . '</div>';
 			}
-			$item_name	 = sanitize_text_field( $_REQUEST[ "item_name" ] );
-			$item_price	 = sanitize_text_field( $_REQUEST[ "price" ] );
-			$currency	 = sanitize_text_field( $_REQUEST[ "currency" ] );
+			$item_name	 = isset( $_REQUEST[ "item_name" ] ) ? sanitize_text_field( $_REQUEST[ "item_name" ] ) : '';
+			$item_price	 = isset( $_REQUEST[ "price" ] ) ? sanitize_text_field( $_REQUEST[ "price" ] ) : '';
+			$currency	 = isset( $_REQUEST[ "currency" ] ) ? sanitize_text_field( $_REQUEST[ "currency" ] ) : '';
 			if ( $show_cart ) {
 			    echo "Item Name: " . $item_name . "<br />";
 			    echo "Price: " . $item_price . " " . $currency . "<br />";
