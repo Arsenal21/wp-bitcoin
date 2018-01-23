@@ -4,7 +4,7 @@ class wpbc_order_form {
 
     static function display_form_handler( $atts ) {
 	echo '<link type="text/css" rel="stylesheet" href="' . WP_BITCOIN_PLUGIN_URL . '/style.php" />' . "\n";
-	$output .= wpbc_order_form::show_order_form( $atts );
+	$output = wpbc_order_form::show_order_form( $atts );
 	return $output;
     }
 
@@ -67,15 +67,14 @@ EOT;
 	$show_credit_card_details	 = 0;
 
 	//Common stripping
-	$_REQUEST[ "fname" ]	 = sanitize_text_field( $_REQUEST[ "fname" ] );
-	$_REQUEST[ "lname" ]	 = sanitize_text_field( $_REQUEST[ "lname" ] );
-	$_REQUEST[ "address" ]	 = sanitize_text_field( $_REQUEST[ "address" ] );
-	$_REQUEST[ "city" ]	 = sanitize_text_field( $_REQUEST[ "city" ] );
-	$_REQUEST[ "state" ]	 = sanitize_text_field( $_REQUEST[ "state" ] );
-	$_REQUEST[ "zip" ]	 = sanitize_text_field( $_REQUEST[ "zip" ] );
-	$_REQUEST[ "country" ]	 = sanitize_text_field( $_REQUEST[ "country" ] );
-	$_REQUEST[ "email" ]	 = sanitize_text_field( $_REQUEST[ "email" ] );
-	$_REQUEST[ "phone" ]	 = sanitize_text_field( $_REQUEST[ "phone" ] );
+	$sanitize_item_keys = array( 'fname', 'lname', 'address', 'city', 'state', 'zip', 'country', 'email', 'phone' );
+	foreach ( $sanitize_item_keys as $key ) {
+	    if ( isset( $_REQUEST[ $key ] ) ) {
+		$_REQUEST[ $key ] = sanitize_text_field( $_REUEST[ $key ] );
+	    } else {
+		$_REQUEST[ $key ] = '';
+	    }
+	}
 	?>
 	<div align="center" class="wrapper">
 
@@ -99,19 +98,19 @@ EOT;
 			<input type="hidden" name="item_name" value="<?php echo $item_name; ?>" />
 			<input type="hidden" name="price" value="<?php echo $item_price; ?>" />
 			<input type="hidden" name="currency" value="<?php echo $currency; ?>" />
-	<?php
-	$text		 = WP_Bitcoin::get_text_message();
-	$countries	 = wpbc_order_form::get_country_list();
-	if ( $show_billing_details ) {
-	    wpbc_order_form::billing_block( $countries, $text );
-	}
-	if ( $show_shipping_details ) {
-	    wpbc_order_form::shipping_block( $countries, $text );
-	}
-	if ( $show_credit_card_details ) {
-	    wpbc_order_form::credit_card_block( $text );
-	}
-	?>
+			<?php
+			$text		 = WP_Bitcoin::get_text_message();
+			$countries	 = wpbc_order_form::get_country_list();
+			if ( $show_billing_details ) {
+			    wpbc_order_form::billing_block( $countries, $text );
+			}
+			if ( $show_shipping_details ) {
+			    wpbc_order_form::shipping_block( $countries, $text );
+			}
+			if ( $show_credit_card_details ) {
+			    wpbc_order_form::credit_card_block( $text );
+			}
+			?>
 			<div class="estore_bitpay_clr"></div>
 			<div class="submit-btn"><input src="<?php echo WP_BITCOIN_PLUGIN_URL; ?>/images/submit_button.png" type="image" name="submit" /></div>
 			<input type="hidden" name="wpbc_user_info_submit" value="yes" />
@@ -154,7 +153,7 @@ EOT;
 	    <label><?php echo $text[ 'BILLING_COUNTRY' ]; ?></label>
 	    <select name="country" id="country" class="long-field required" >
 		<option value=""><?php echo $text[ 'SELECT_BILLING_COUNTRY' ]; ?></option>
-	<?php foreach ( $countries as $code => $name ) { ?>
+		<?php foreach ( $countries as $code => $name ) { ?>
 	    	<option value="<?php echo $code; ?>" <?php echo $_REQUEST[ "country" ] == "$code" ? "selected" : "" ?>><?php echo $name; ?></option>
 		<?php } ?>
 	    </select>
@@ -209,9 +208,9 @@ EOT;
 	    <label><?php echo $text[ 'SHIPPING_COUNTRY' ]; ?></label>
 	    <select name="shipping_country" id="shipping_country" class="long-field required" >
 		<option value=""><?php echo $text[ 'SELECT_SHIPPING_COUNTRY' ]; ?></option>
-	<?php foreach ( $countries as $code => $name ) { ?>
+		<?php foreach ( $countries as $code => $name ) { ?>
 	    	<option value="<?php echo $code; ?>" <?php echo ($_REQUEST[ "shipping_country" ] == "$code") ? "selected" : "" ?>><?php echo $name; ?></option>
-	<?php } ?>
+		<?php } ?>
 	    </select>
 	    <div class="wp_bitcoin_clr"></div>
 
@@ -244,31 +243,31 @@ EOT;
 
 	    <label><?php echo esc_attr( $text[ 'CREDIT_CARD_EXPIRATION_DATE' ] ); ?></label>
 	    <select name="cardexpirymonth" id="exp1" class="small-field required" >
-	        <option value="01">01</option>
-	        <option value="02">02</option>
-	        <option value="03">03</option>
-	        <option value="04">04</option>
-	        <option value="05">05</option>
-	        <option value="06">06</option>
-	        <option value="07">07</option>
-	        <option value="08">08</option>
-	        <option value="09">09</option>
-	        <option value="10">10</option>
-	        <option value="11">11</option>
-	        <option value="12">12</option>
+		<option value="01">01</option>
+		<option value="02">02</option>
+		<option value="03">03</option>
+		<option value="04">04</option>
+		<option value="05">05</option>
+		<option value="06">06</option>
+		<option value="07">07</option>
+		<option value="08">08</option>
+		<option value="09">09</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
 	    </select>
 	    <select name="cardexpiryyear" id="exp2" class="small-field required" >
-	        <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-	        <option value="<?php echo $year + 1; ?>"><?php echo $year + 1; ?></option>
-	        <option value="<?php echo $year + 2; ?>"><?php echo $year + 2; ?></option>
-	        <option value="<?php echo $year + 3; ?>"><?php echo $year + 3; ?></option>
-	        <option value="<?php echo $year + 4; ?>"><?php echo $year + 4; ?></option>
-	        <option value="<?php echo $year + 5; ?>"><?php echo $year + 5; ?></option>
-	        <option value="<?php echo $year + 6; ?>"><?php echo $year + 6; ?></option>
-	        <option value="<?php echo $year + 7; ?>"><?php echo $year + 7; ?></option>
-	        <option value="<?php echo $year + 8; ?>"><?php echo $year + 8; ?></option>
-	        <option value="<?php echo $year + 9; ?>"><?php echo $year + 9; ?></option>
-	        <option value="<?php echo $year + 10; ?>"><?php echo $year + 10; ?></option>
+		<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+		<option value="<?php echo $year + 1; ?>"><?php echo $year + 1; ?></option>
+		<option value="<?php echo $year + 2; ?>"><?php echo $year + 2; ?></option>
+		<option value="<?php echo $year + 3; ?>"><?php echo $year + 3; ?></option>
+		<option value="<?php echo $year + 4; ?>"><?php echo $year + 4; ?></option>
+		<option value="<?php echo $year + 5; ?>"><?php echo $year + 5; ?></option>
+		<option value="<?php echo $year + 6; ?>"><?php echo $year + 6; ?></option>
+		<option value="<?php echo $year + 7; ?>"><?php echo $year + 7; ?></option>
+		<option value="<?php echo $year + 8; ?>"><?php echo $year + 8; ?></option>
+		<option value="<?php echo $year + 9; ?>"><?php echo $year + 9; ?></option>
+		<option value="<?php echo $year + 10; ?>"><?php echo $year + 10; ?></option>
 	    </select>
 	    <div class="wp_bitcoin_clr"></div>
 
