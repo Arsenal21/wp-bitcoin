@@ -31,6 +31,9 @@ add_filter('the_content', 'bitpay_estore_filter_store_action_page');
 function bitpay_estore_filter_store_action_page($content)
 {
     global $post;
+    if (!isset($post)) {
+	return $content;
+    }
     if ($post->post_name == 'wpbc-order-info')
     {
         if(isset($_REQUEST['wpbc_co']) && $_REQUEST['gateway'] == 'bitpay')
